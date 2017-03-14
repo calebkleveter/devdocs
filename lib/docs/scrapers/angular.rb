@@ -30,7 +30,7 @@ module Docs
     end
 
     options[:attribution] = <<-HTML
-      &copy; 2010&ndash;2016 Google, Inc.<br>
+      &copy; 2010&ndash;2017 Google, Inc.<br>
       Licensed under the Creative Commons Attribution License 4.0.
     HTML
 
@@ -42,7 +42,7 @@ module Docs
     end
 
     version '2 TypeScript' do
-      self.release = '2.4.3'
+      self.release = '2.4.7'
       self.base_url = 'https://angular.io/docs/ts/latest/'
     end
 
@@ -58,15 +58,15 @@ module Docs
 
     private
 
-    def parse(string)
-      string.gsub! '<code-example', '<pre'
-      string.gsub! '</code-example', '</pre'
-      string.gsub! '<code-pane', '<pre'
-      string.gsub! '</code-pane', '</pre'
-      string.gsub! '<live-example></live-example>', 'live example'
-      string.gsub! '<live-example', '<span'
-      string.gsub! '</live-example', '</span'
-      super string
+    def parse(response)
+      response.body.gsub! '<code-example', '<pre'
+      response.body.gsub! '</code-example', '</pre'
+      response.body.gsub! '<code-pane', '<pre'
+      response.body.gsub! '</code-pane', '</pre'
+      response.body.gsub! '<live-example></live-example>', 'live example'
+      response.body.gsub! '<live-example', '<span'
+      response.body.gsub! '</live-example', '</span'
+      super
     end
   end
 end

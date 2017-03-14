@@ -336,11 +336,11 @@ $.popup = (value) ->
     window.open value.href or value, '_blank'
   return
 
-$.isWindows = ->
-  navigator.platform?.indexOf('Win') >= 0
-
 $.isMac = ->
   navigator.userAgent?.indexOf('Mac') >= 0
+
+$.isIE = ->
+  navigator.userAgent?.indexOf('MSIE') >= 0 || navigator.userAgent?.indexOf('rv:11.0') >= 0
 
 HIGHLIGHT_DEFAULTS =
   className: 'highlight'

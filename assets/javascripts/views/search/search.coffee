@@ -51,14 +51,6 @@ class app.views.Search extends app.View
     @autoFocus()
     return
 
-  disable: ->
-    @input.setAttribute('disabled', 'disabled')
-    return
-
-  enable: ->
-    @input.removeAttribute('disabled')
-    return
-
   onReady: =>
     @value = ''
     @delay @onInput
@@ -130,7 +122,7 @@ class app.views.Search extends app.View
     if event.target is @resetLink
       $.stopEvent(event)
       @reset()
-      @focus()
+      app.document.onEscape()
     return
 
   onSubmit: (event) ->

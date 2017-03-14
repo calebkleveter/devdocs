@@ -13,21 +13,8 @@ class app.Settings
     manualUpdate: false
     schema: 1
 
-  constructor: (legacyStore) ->
+  constructor: ->
     @store = new CookieStore
-    @importLegacyValues(legacyStore)
-
-  importLegacyValues: (legacyStore) ->
-    return unless settings = legacyStore.get('settings')
-    for key, value of settings
-      if key == 'autoUpdate'
-        key = 'manualUpdate'
-        value = !value
-      else if key == 'tips'
-        value = value.join('/')
-      @store.set(key, value)
-    legacyStore.del('settings')
-    return
 
   set: (key, value) ->
     @store.set(key, value)
@@ -51,10 +38,6 @@ class app.Settings
 
   setTips: (tips) ->
     @store.set TIPS_KEY, tips.join('/')
-    return
-
-  setDark: (value) ->
-    @store.set DARK_KEY, !!value
     return
 
   setLayout: (name, enable) ->
